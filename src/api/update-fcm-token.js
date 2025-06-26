@@ -1,6 +1,6 @@
 // src/components/NotificationService.js
 import { getFCMToken } from '../service/firebaseConfig'; // Import FCM logic
-import config from "./config";
+import config from "../config";
 
 const updateFcmToken = async (userId, fcmToken) => {
   try {
