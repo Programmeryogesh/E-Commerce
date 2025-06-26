@@ -1,9 +1,10 @@
 // src/components/NotificationService.js
 import { getFCMToken } from '../service/firebaseConfig'; // Import FCM logic
+import config from "./config";
 
 const updateFcmToken = async (userId, fcmToken) => {
   try {
-    const response = await fetch('http://localhost:5000/api/auth/update-fcm-token', {
+    const response = await fetch(`${config.baseUrl}/auth/update-fcm-token`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

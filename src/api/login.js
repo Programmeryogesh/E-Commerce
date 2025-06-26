@@ -1,9 +1,10 @@
 import axios from "axios";
+import config from "./config";
 import { handleFCMTokenUpdate } from "./update-fcm-token";
 
 const login = async (data) => {
     try {
-        const response = await axios.post("http://localhost:5000/api/auth/login", data);
+        const response = await axios.post(`${config.baseUrl}/auth/login`, data);
         // if (response?.status === 200) {
         //     await handleFCMTokenUpdate(response.data.user.id);
         // }

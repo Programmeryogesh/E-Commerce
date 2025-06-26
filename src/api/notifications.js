@@ -1,10 +1,11 @@
 import axios from "axios";
+import config from "./config";
 
 const GetNotifications = async (userId) => {
   console.log(userId, "userId");
   try {
     const response = await axios.get(
-      "http://localhost:5000/api/auth/notifications",
+      `${config.baseUrl}/auth/notifications`,
       { params: { id: userId } }
     );
     console.log(response, "response");
@@ -18,7 +19,7 @@ const GetNotifications = async (userId) => {
 const deleteNotification = async (userId, notificationIndex) => {
   try {
     const response = await axios.delete(
-      "http://localhost:5000/api/auth/notifications",
+      `${config.baseUrl}/auth/notifications`,
       { 
         params: { 
           userId: userId,
@@ -36,7 +37,7 @@ const deleteNotification = async (userId, notificationIndex) => {
 const deleteAllNotifications = async (userId) => {
   try {
     const response = await axios.delete(
-      "http://localhost:5000/api/auth/notifications/all",
+      `${config.baseUrl}/auth/notifications/all`,
       { 
         params: { 
           userId: userId
@@ -53,7 +54,7 @@ const deleteAllNotifications = async (userId) => {
 const sendNotification = async (userId, message) => {
   try {
     const response = await axios.post(
-      "http://localhost:5000/api/auth/notifications",
+      `${config.baseUrl}/auth/notifications`,
       { userId, message }
     );
     return response;

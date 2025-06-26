@@ -1,8 +1,9 @@
 import axios from "axios";
+import config from "./config";
 
 const ForgotPasswordApi = async (data) => {
     try {
-        const response = await axios.post("http://localhost:5000/api/auth/forgot-password", data);
+        const response = await axios.post(`${config.baseUrl}/auth/forgot-password`, data);
         return response;
     } catch (error) {
         return error.response;

@@ -1,4 +1,5 @@
 import axios from "axios";
+import config from "./config";
 
 const UpdateProducts = async (productId, data) => {
     console.log(data , "check data here");
@@ -11,7 +12,7 @@ const UpdateProducts = async (productId, data) => {
     
   try {
     const response = await axios.put(
-      `http://localhost:5000/api/products/updateProduct/${productId}`, // Use the correct URL
+      `${config.baseUrl}/products/updateProduct/${productId}`, // Use the correct URL
       data // Send data properly
     );
     return response;

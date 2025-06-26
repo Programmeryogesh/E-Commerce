@@ -1,4 +1,5 @@
 import axios from "axios";
+import config from "./config";
 
 const Upload = async (data) => {
     // Add user ID to the form data for notification purposes
@@ -8,7 +9,7 @@ const Upload = async (data) => {
     }
     
     try {
-        const response = await axios.post(`http://localhost:5000/api/products/upload`, data);
+        const response = await axios.post(`${config.baseUrl}/products/upload`, data);
         return response;
     } catch (error) {
         return error.response;

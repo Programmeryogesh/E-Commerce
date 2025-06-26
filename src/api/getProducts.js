@@ -1,8 +1,9 @@
 import axios from "axios";
+import config from "./config";
 
 const GetProducts = async () => {
     try {
-        const response = await axios.get("http://localhost:5000/api/products/getProducts");
+        const response = await axios.get(`${config.baseUrl}/products/getProducts`);
         console.log(response, "response");
         return response;
     } catch (error) {
@@ -12,7 +13,7 @@ const GetProducts = async () => {
 
 const searchProductsByName = async (query) => {
     try {
-        const response = await axios.get("http://localhost:5000/api/products/search", {
+        const response = await axios.get(`${config.baseUrl}/api/products/search`, {
             params: { q: query },
         });
         return response;

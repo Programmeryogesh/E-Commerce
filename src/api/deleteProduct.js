@@ -1,8 +1,9 @@
 import axios from "axios";
+import config from "./config";
 
 const DeleteProduct = async (productId) => {
     try {
-        const response = await axios.delete(`http://localhost:5000/api/products/deleteProduct`,{params: { id: productId }});
+        const response = await axios.delete(`${config.baseUrl}/products/deleteProduct`,{params: { id: productId }});
         return response;
     } catch (error) {
         return error.response;
