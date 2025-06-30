@@ -1,6 +1,5 @@
 import axios from "axios";
 import config from "../config";
-
 const UpdateProducts = async (productId, data) => {
     console.log(data , "check data here");
     

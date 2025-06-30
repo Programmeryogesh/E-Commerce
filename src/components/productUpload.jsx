@@ -106,8 +106,10 @@ export default function ProductUpload() {
     formData.append("rate", product.rating.rate);
     formData.append("count", product.rating.count);
 
-    product.images.forEach((image) => {
-      formData.append(`images`, image);
+    product.images.forEach((img) => {
+      if (img instanceof File) {
+        formData.append("images", img);
+      }
     });
 
     try {

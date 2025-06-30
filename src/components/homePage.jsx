@@ -34,6 +34,13 @@ const HomePage = () => {
     }
   };
 
+  const handleDeleteProduct = (deletedProductId) => {
+    // Remove the deleted product from the local state
+    setProductData(prevData => 
+      prevData.filter(product => product.id !== deletedProductId)
+    );
+  };
+
   useEffect(() => {
     if (!searchQuery) {
       handleGetProducts();
@@ -42,6 +49,6 @@ const HomePage = () => {
     }
   }, [searchQuery]);
 
-  return <>{ProductData && <CardProduct ProductData={ProductData} />}</>;
+  return <>{ProductData && <CardProduct ProductData={ProductData} onDelete={handleDeleteProduct} />}</>;
 };
 export default HomePage;

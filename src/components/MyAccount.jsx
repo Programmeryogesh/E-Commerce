@@ -53,7 +53,7 @@ const MyAccount = () => {
             <div className="profile-header">
                 {user.profilePhoto ? (
                     <img
-                        src={`http://localhost:5000${user.profilePhoto}`}
+                        src={`${user.profilePhoto}`}
                         alt="Profile"
                         className="avatar"
                         style={{ width: 60, height: 60, borderRadius: '50%', objectFit: 'cover', border: '2px solid #eee' }}

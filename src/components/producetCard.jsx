@@ -3,24 +3,46 @@ import Button from "@mui/joy/Button";
 import Card from "@mui/joy/Card";
 import CardContent from "@mui/joy/CardContent";
 import Typography from "@mui/joy/Typography";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setProducts } from "../store/actions/productActions";
 import { CardMedia } from "@mui/material";
 import DeleteProduct from "../api/deleteProduct";
 
-export default function ProductCard({ Product }) {
+export default function ProductCard({ Product, onDelete }) {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const productInCart = useSelector((state) => state.cart.products);
+  const [isDeleting, setIsDeleting] = React.useState(false);
+  
   // console.log(productInCart);
   function isItemInCart() {
     return productInCart.some((oneObj) => oneObj.id == Product.id);
   }
+  
   const handleDelete = async (id) => {
-    const response = await DeleteProduct(id);
-    if (response.status === 200) {
-      window.location.reload();
+    // Add confirmation dialog
+    const confirmDelete = window.confirm(`Are you sure you want to delete "${Product.title}"? This action cannot be undone.`);
+    if (!confirmDelete) {
+      return;
+    }
+    
+    setIsDeleting(true);
+    try {
+      const response = await DeleteProduct(id);
+      if (response.status === 200) {
+        // Call the onDelete callback to update parent state
+        if (onDelete) {
+          onDelete(id);
+        }
+        // Show success message (optional)
+        console.log("Product deleted successfully");
+      } else {
+        console.error("Failed to delete product:", response.data?.error || "Unknown error");
+      }
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    } finally {
+      setIsDeleting(false);
     }
   };
 
@@ -105,8 +127,9 @@ export default function ProductCard({ Product }) {
             width: "100%",
           }}
           onClick={() => handleDelete(Product.id)}
+          disabled={isDeleting}
         >
-          Delete
+          {isDeleting ? "Deleting..." : "Delete"}
         </Button>
       )}
 

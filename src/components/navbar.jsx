@@ -126,7 +126,7 @@ export default function NavigationBar() {
     if (userId) {
       getProfile(userId).then((response) => {
         if (response && response.status === 200 && response.data.profilePhoto) {
-          setProfilePhoto(`http://localhost:5000${response.data.profilePhoto}`);
+          setProfilePhoto(`${response.data.profilePhoto}`);
         } else {
           setProfilePhoto(null);
         }

@@ -1,6 +1,5 @@
 import axios from "axios";
 import config from "../config";
-
 const Upload = async (data) => {
     // Add user ID to the form data for notification purposes
     const userId = localStorage.getItem("userId");

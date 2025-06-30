@@ -1,6 +1,5 @@
 import axios from "axios";
 import config from "../config";
-
 const GetProducts = async () => {
     try {
         const response = await axios.get(`${config.baseUrl}/products/getProducts`);
